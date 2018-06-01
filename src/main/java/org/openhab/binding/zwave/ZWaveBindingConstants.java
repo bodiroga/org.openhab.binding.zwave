@@ -25,6 +25,10 @@ public class ZWaveBindingConstants {
 
     // Controllers
     public final static ThingTypeUID CONTROLLER_SERIAL = new ThingTypeUID(BINDING_ID, "serial_zstick");
+    public final static ThingTypeUID CONTROLLER_TCP = new ThingTypeUID(BINDING_ID, "tcp_zstick");
+
+    public final static String CONFIGURATION_TCP_HOST = "tcp_host";
+    public final static String CONFIGURATION_TCP_PORT = "tcp_port";
 
     public final static String CONFIGURATION_PORT = "port";
     public final static String CONFIGURATION_MASTER = "controller_master";
@@ -101,6 +105,10 @@ public class ZWaveBindingConstants {
     public final static String OFFLINE_SERIAL_INUSE = "@text/zwave.thingstate.serial_inuse";
     public final static String OFFLINE_SERIAL_UNSUPPORTED = "@text/zwave.thingstate.serial_unsupported";
     public final static String OFFLINE_SERIAL_LISTENERS = "@text/zwave.thingstate.serial_listeners";
+    public final static String OFFLINE_TCP_EXISTS = "@text/zwave.thingstate.tcp_notfound";
+    public final static String OFFLINE_TCP_DISCONNECTED = "@text/zwave.thingstate.tcp_inuse";
+    public final static String OFFLINE_TCP_UNSUPPORTED = "@text/zwave.thingstate.tcp_unsupported";
+    public final static String OFFLINE_TCP_CONNECTION = "@text/zwave.thingstate.tcp_connection";
 
     public final static String EVENT_INCLUSION_STARTED = "@text/zwave.event.inclusion_started";
     public final static String EVENT_INCLUSION_COMPLETED = "@text/zwave.event.inclusion_completed";
@@ -137,5 +145,6 @@ public class ZWaveBindingConstants {
     public final static String CONFIG_BINDING_CMDREPOLLPERIOD_LABEL = "Command Poll Period";
     public final static String CONFIG_BINDING_CMDREPOLLPERIOD_DESC = "Set the period to wait after a command is sent to a device before polling its state.";
 
-    public final static Set<ThingTypeUID> SUPPORTED_BRIDGE_TYPES_UIDS = ImmutableSet.of(CONTROLLER_SERIAL);
+    public final static Set<ThingTypeUID> SUPPORTED_BRIDGE_TYPES_UIDS = ImmutableSet.of(CONTROLLER_SERIAL,
+            CONTROLLER_TCP);
 }

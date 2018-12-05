@@ -124,6 +124,12 @@ public class ZWaveMultiLevelSensorConverter extends ZWaveCommandClassConverter {
                                 sensorEvent.getSensorScale());
                 }
                 break;
+            case POWER:
+                return new QuantityType<>(val, SmartHomeUnits.WATT);
+            case VOLTAGE:
+                return new QuantityType<>(val, SmartHomeUnits.VOLT);
+            case CURRENT:
+                return new QuantityType<>(val, SmartHomeUnits.AMPERE);
             default:
                 logger.debug("NODE {}: Sensor conversion not performed for {}.", event.getNodeId(), senType);
                 break;

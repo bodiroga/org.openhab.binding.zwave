@@ -13,6 +13,8 @@ import java.util.List;
 
 import org.eclipse.smarthome.core.library.types.DecimalType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
+import org.eclipse.smarthome.core.library.types.QuantityType;
+import org.eclipse.smarthome.core.library.unit.SmartHomeUnits;
 import org.eclipse.smarthome.core.types.Command;
 import org.eclipse.smarthome.core.types.State;
 import org.openhab.binding.zwave.handler.ZWaveControllerHandler;
@@ -23,6 +25,7 @@ import org.openhab.binding.zwave.internal.protocol.ZWaveNode;
 import org.openhab.binding.zwave.internal.protocol.commandclass.ZWaveCommandClass;
 import org.openhab.binding.zwave.internal.protocol.commandclass.ZWaveMeterCommandClass;
 import org.openhab.binding.zwave.internal.protocol.commandclass.ZWaveMeterCommandClass.MeterScale;
+import org.openhab.binding.zwave.internal.protocol.commandclass.ZWaveMeterCommandClass.MeterType;
 import org.openhab.binding.zwave.internal.protocol.commandclass.ZWaveMeterCommandClass.ZWaveMeterValueEvent;
 import org.openhab.binding.zwave.internal.protocol.commandclass.ZWaveMultiLevelSensorCommandClass;
 import org.openhab.binding.zwave.internal.protocol.event.ZWaveCommandClassValueEvent;
@@ -107,6 +110,60 @@ public class ZWaveMeterConverter extends ZWaveCommandClassConverter {
             if (val.doubleValue() <= Double.parseDouble(meterZero)) {
                 val = BigDecimal.ZERO;
             }
+        }
+
+        MeterType meterType = meterEvent.getMeterType();
+        MeterScale metScale = meterEvent.getMeterScale();
+        switch (meterType) {
+            case ELECTRIC:
+                switch (metScale) {
+                    case E_KWh:
+                        return new QuantityType<>(val, SmartHomeUnits.KILOWATT_HOUR);
+                    case E_KVAh:
+                        return new DecimalType(val);
+                    case E_W:
+                        return new QuantityType<>(val, SmartHomeUnits.WATT);
+                    case E_Pulses:
+                        return new DecimalType(val);
+                    case E_V:
+                        return new QuantityType<>(val, SmartHomeUnits.VOLT);
+                    case E_A:
+                        return new QuantityType<>(val, SmartHomeUnits.AMPERE);
+                    case E_Power_Factor:
+                        return new DecimalType(val);
+                    default:
+                        return new DecimalType(val);
+                }
+            case GAS:
+                switch (metScale) {
+                    case G_Cubic_Meters:
+                        return new DecimalType(val);
+                    case G_Cubic_Feet:
+                        return new DecimalType(val);
+                    case G_Pulses:
+                        return new DecimalType(val);
+                    default:
+                        return new DecimalType(val);
+                }
+
+            case WATER:
+                switch (metScale) {
+                    case W_Cubic_Meters:
+                        return new DecimalType(val);
+                    case W_Cubic_Feet:
+                        return new DecimalType(val);
+                    case W_Gallons:
+                        return new DecimalType(val);
+                    case W_Pulses:
+                        return new DecimalType(val);
+                    default:
+                        return new DecimalType(val);
+                }
+            case UNKNOWN:
+                return new DecimalType(val);
+            default:
+                logger.debug("NODE {}: Unknown meter type {}", event.getNodeId(), meterType);
+                break;
         }
 
         return new DecimalType(val);

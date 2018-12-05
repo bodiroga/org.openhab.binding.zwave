@@ -431,11 +431,11 @@
 
     <!-- Energy - Current Consumption -->
     <channel-type id="meter_current">
-        <item-type>Number</item-type>
+        <item-type>Number:ElectricCurrent</item-type>
         <label>Electric Current Consumption</label>
         <description>Indicates the instantaneous current consumption</description>
         <category>Energy</category>
-        <state pattern="%.1f" readOnly="true">
+        <state pattern="%.1f %unit%" readOnly="true">
         </state>
     </channel-type>
 
@@ -471,7 +471,7 @@
     
     <!-- Energy - Energy Consumption (kVAh) -->
     <channel-type id="meter_kvah">
-        <item-type>Number</item-type>
+        <item-type>Number:Energy</item-type>
         <label>Energy Consumption</label>
         <description>Indicates the energy consumption (kVAh)</description>
         <category>Energy</category>
@@ -481,11 +481,11 @@
 
     <!-- Energy - Energy Consumption (kWh) -->
     <channel-type id="meter_kwh">
-        <item-type>Number</item-type>
+        <item-type>Number:Energy</item-type>
         <label>Energy Consumption</label>
         <description>Indicates the energy consumption (kWh)</description>
         <category>Energy</category>
-        <state pattern="%.1f" readOnly="true">
+        <state pattern="%.1f %unit%" readOnly="true">
         </state>
     </channel-type>
 
@@ -519,11 +519,11 @@
 
     <!-- Energy - Voltage -->
     <channel-type id="meter_voltage">
-        <item-type>Number</item-type>
+        <item-type>Number:ElectricPotential</item-type>
         <label>Voltage</label>
         <description>Indicates the instantaneous voltage</description>
         <category>Energy</category>
-        <state pattern="%.1f" readOnly="true">
+        <state pattern="%.1f %unit%" readOnly="true">
         </state>
     </channel-type>
 
@@ -569,11 +569,11 @@
     
     <!-- Energy - Power Consumption -->
     <channel-type id="meter_watts">
-        <item-type>Number</item-type>
+        <item-type>Number:Power</item-type>
         <label>Electric Power Consumption</label>
         <description>Indicates the instantaneous power consumption</description>
         <category>Energy</category>
-        <state pattern="%.1f" readOnly="true">
+        <state pattern="%.1f %unit%" readOnly="true">
         </state>
     </channel-type>
 
@@ -1036,11 +1036,11 @@
 
     <!-- Sensor - Power -->
     <channel-type id="sensor_power">
-        <item-type>Number</item-type>
-        <label>Energy Consumption</label>
-        <description>Indicates the energy consumption (kWh)</description>
+        <item-type>Number:Power</item-type>
+        <label>Electric Power Consumption</label>
+        <description>Indicates the instantaneous power consumption</description>
         <category>Energy</category>
-        <state pattern="%.1f" readOnly="true">
+        <state pattern="%.1f %unit%" readOnly="true">
         </state>
     </channel-type>
 

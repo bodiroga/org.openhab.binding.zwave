@@ -128,7 +128,7 @@ public class ZWaveConfigProvider implements ConfigDescriptionProvider, ConfigOpt
         List<ConfigDescriptionParameter> parameters = new ArrayList<ConfigDescriptionParameter>();
 
         if ("thing-type".equals(uri.getScheme())) {
-            if (uri.getSchemeSpecificPart().equals(ZWaveBindingConstants.CONTROLLER_SERIAL.toString())) {
+            if (uri.getSchemeSpecificPart().equals(ZWaveBindingConstants.CONTROLLER_TCP.toString())) {
                 return null;
             }
             parameters.add(

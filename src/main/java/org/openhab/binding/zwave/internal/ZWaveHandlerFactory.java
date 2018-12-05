@@ -7,7 +7,7 @@
  */
 package org.openhab.binding.zwave.internal;
 
-import static org.openhab.binding.zwave.ZWaveBindingConstants.CONTROLLER_SERIAL;
+import static org.openhab.binding.zwave.ZWaveBindingConstants.CONTROLLER_TCP;
 
 import org.eclipse.smarthome.core.thing.Bridge;
 import org.eclipse.smarthome.core.thing.Thing;
@@ -16,7 +16,7 @@ import org.eclipse.smarthome.core.thing.binding.BaseThingHandlerFactory;
 import org.eclipse.smarthome.core.thing.binding.ThingHandler;
 import org.eclipse.smarthome.core.thing.binding.ThingHandlerFactory;
 import org.openhab.binding.zwave.ZWaveBindingConstants;
-import org.openhab.binding.zwave.handler.ZWaveSerialHandler;
+import org.openhab.binding.zwave.handler.ZWaveTCPHandler;
 import org.openhab.binding.zwave.handler.ZWaveThingHandler;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
@@ -48,8 +48,8 @@ public class ZWaveHandlerFactory extends BaseThingHandlerFactory {
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
 
         // Handle controllers here
-        if (thingTypeUID.equals(CONTROLLER_SERIAL)) {
-            return new ZWaveSerialHandler((Bridge) thing);
+        if (thingTypeUID.equals(CONTROLLER_TCP)) {
+            return new ZWaveTCPHandler((Bridge) thing);
         }
 
         // Everything else gets handled in a single handler

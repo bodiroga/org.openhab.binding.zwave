@@ -24,9 +24,11 @@ public class ZWaveBindingConstants {
     public static final String BINDING_ID = "zwave";
 
     // Controllers
-    public final static ThingTypeUID CONTROLLER_SERIAL = new ThingTypeUID(BINDING_ID, "serial_zstick");
+    public final static ThingTypeUID CONTROLLER_TCP = new ThingTypeUID(BINDING_ID, "tcp_zstick");
 
-    public final static String CONFIGURATION_PORT = "port";
+    public final static String CONFIGURATION_TCP_HOST = "tcp_host";
+    public final static String CONFIGURATION_TCP_PORT = "tcp_port";
+
     public final static String CONFIGURATION_MASTER = "controller_master";
     public final static String CONFIGURATION_SISNODE = "controller_sisnode";
     public final static String CONFIGURATION_NETWORKKEY = "security_networkkey";
@@ -97,10 +99,10 @@ public class ZWaveBindingConstants {
     public final static String OFFLINE_CTLR_OFFLINE = "@text/zwave.thingstate.controller_offline";
     public final static String OFFLINE_NODE_DEAD = "@text/zwave.thingstate.node_dead";
     public final static String OFFLINE_NODE_NOTFOUND = "@text/zwave.thingstate.node_notfound";
-    public final static String OFFLINE_SERIAL_EXISTS = "@text/zwave.thingstate.serial_notfound";
-    public final static String OFFLINE_SERIAL_INUSE = "@text/zwave.thingstate.serial_inuse";
-    public final static String OFFLINE_SERIAL_UNSUPPORTED = "@text/zwave.thingstate.serial_unsupported";
-    public final static String OFFLINE_SERIAL_LISTENERS = "@text/zwave.thingstate.serial_listeners";
+    public final static String OFFLINE_TCP_EXISTS = "@text/zwave.thingstate.tcp_notfound";
+    public final static String OFFLINE_TCP_DISCONNECTED = "@text/zwave.thingstate.tcp_inuse";
+    public final static String OFFLINE_TCP_UNSUPPORTED = "@text/zwave.thingstate.tcp_unsupported";
+    public final static String OFFLINE_TCP_CONNECTION = "@text/zwave.thingstate.tcp_connection";
 
     public final static String EVENT_INCLUSION_STARTED = "@text/zwave.event.inclusion_started";
     public final static String EVENT_INCLUSION_COMPLETED = "@text/zwave.event.inclusion_completed";
@@ -139,5 +141,5 @@ public class ZWaveBindingConstants {
 
     public final static String GROUP_CONTROLLER = "controller";
 
-    public final static Set<ThingTypeUID> SUPPORTED_BRIDGE_TYPES_UIDS = ImmutableSet.of(CONTROLLER_SERIAL);
+    public final static Set<ThingTypeUID> SUPPORTED_BRIDGE_TYPES_UIDS = ImmutableSet.of(CONTROLLER_TCP);
 }

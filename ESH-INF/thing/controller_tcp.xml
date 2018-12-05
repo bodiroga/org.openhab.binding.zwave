@@ -4,9 +4,9 @@
     xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
     xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 org.eclipse.smarthome.thing-description.xsd">
 
-    <bridge-type id="serial_zstick">
-        <label>Z-Wave Serial Controller</label>
-        <description>Z-Wave USB Stick with Serial Interface</description>
+    <bridge-type id="tcp_zstick">
+        <label>Z-Wave TCP Controller</label>
+        <description>Z-Wave USB Stick with TCP Interface</description>
 
         <channels>
             <channel id="serial_sof" typeId="serial_sof" />
@@ -18,17 +18,20 @@
         </channels>
 
         <config-description>
-            <parameter-group name="port">
-                <label>Port Configuration</label>
+            <parameter-group name="tcp">
+                <context>communication</context>
+                <label>TCP Configuration</label>
                 <description></description>
             </parameter-group>
 
             <parameter-group name="network">
+                <context>wireless</context>
                 <label>Z-Wave Network Settings</label>
                 <description></description>
             </parameter-group>
 
             <parameter-group name="heal">
+                <context>health</context>
                 <label>Z-Wave Network Heal</label>
                 <description></description>
             </parameter-group>
@@ -38,12 +41,18 @@
                 <description></description>
             </parameter-group>
 
-            <parameter name="port" type="text" required="true" groupName="port">
-                <label>Serial Port</label>
-                <context>serial-port</context>
-                <description>Set the serial port used to access the Z-Wave stick</description>
+            <parameter name="tcp_host" type="text" required="true" groupName="tcp">
+                <label>TCP Host</label>
+                <description>Set the hostname to access the Z-Wave TCP Controller</description>
                 <default></default>
             </parameter>
+            
+            <parameter name="tcp_port" type="integer" required="true" groupName="tcp">
+                <label>TCP Port</label>
+                <description>Set the port used to access the Z-Wave TCP Controller</description>
+                <default></default>
+            </parameter>
+            
 
             <parameter name="controller_master" type="boolean" groupName="network">
                 <label>Controller is Master</label>
